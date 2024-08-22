@@ -26,7 +26,7 @@ namespace MovTicket.Controllers
             var customer = new Customer
             {
                 c_name = viewModel.c_name,
-                c_address = viewModel.c_address,
+                c_adress = viewModel.c_adress,
                 c_email = viewModel.c_email,
                 c_phone = viewModel.c_phone,
                 c_subscription = viewModel.c_subscription
@@ -34,7 +34,7 @@ namespace MovTicket.Controllers
             await dbContext.Customers.AddAsync(customer);
 
             await dbContext.SaveChangesAsync();
-
+            
 
             return View();
         }
@@ -63,7 +63,7 @@ namespace MovTicket.Controllers
             if (customer is not null) 
             {
                 customer.c_name = viewModel.c_name;
-                customer.c_address = viewModel.c_address;
+                customer.c_adress = viewModel.c_adress;
                 customer.c_email = viewModel.c_email;
                 customer.c_phone = viewModel.c_phone;
                 customer.c_subscription = viewModel.c_subscription;
@@ -71,7 +71,7 @@ namespace MovTicket.Controllers
                 await dbContext.SaveChangesAsync();
             }
 
-            return RedirectToAction("List", "Costumer");
+            return RedirectToAction("List", "Customer");
         }
     }
 }
