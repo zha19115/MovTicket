@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<MovTicket.Models.Entities.Customer>
+
+<h1>Customers</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Subscription</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.c_id</td>
+                <td>@customer.c_name</td>
+                <td>@customer.c_address</td>
+                <td>@customer.c_email</td>
+                <td>@customer.c_phone</td>
+                <td>@customer.c_subscription</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Customer" asp-action="Edit" asp-route="@customer.c_id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -42,5 +42,7 @@ namespace MovTicket.Controllers
             var movie = await _dbContext.Movies.ToListAsync();
             return View(movie);
         }
+
+        
     }
 }
