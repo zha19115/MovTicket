@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*using Microsoft.AspNetCore.Mvc;
 using MovTicket.Data;
 using MovTicket.Models;
 using MovTicket.Models.Entities;
@@ -35,4 +35,4 @@ namespace MovTicket.Controllers
             return View();
         }
     }
-}
+}*/

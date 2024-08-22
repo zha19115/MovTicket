@@ -35,5 +35,12 @@ namespace MovTicket.Controllers
             }
             return RedirectToAction("MovieDetails", new { id = selectedMovieId });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> List()
+        { 
+            var movie = await _dbContext.Movies.ToListAsync();
+            return View(movie);
+        }
     }
 }
