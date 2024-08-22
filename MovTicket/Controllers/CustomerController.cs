@@ -39,7 +39,39 @@ namespace MovTicket.Controllers
             return View();
         }
 
-        
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            var customer = await dbContext.Customers.ToListAsync();
+            return View(customer);
+        }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int c_id)
+        {
+            var customer = await dbContext.Customers.FindAsync(c_id);
+
+            return View(customer);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Customer viewModel)
+        {
+            var customer = await dbContext.Customers.FindAsync(viewModel.c_id);
+
+            if (customer is not null) 
+            {
+                customer.c_name = viewModel.c_name;
+                customer.c_address = viewModel.c_address;
+                customer.c_email = viewModel.c_email;
+                customer.c_phone = viewModel.c_phone;
+                customer.c_subscription = viewModel.c_subscription;
+
+                await dbContext.SaveChangesAsync();
+            }
+
+            return RedirectToAction("List", "Costumer");
+        }
     }
 }
