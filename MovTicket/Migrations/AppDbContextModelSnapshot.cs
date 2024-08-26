@@ -93,6 +93,9 @@ namespace MovTicket.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("t_id"));
 
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
                     b.Property<int>("Customerc_id")
                         .HasColumnType("int");
 

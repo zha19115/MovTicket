@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MovTicket.Models.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovTicket.Models.Entities
 {
@@ -8,6 +9,9 @@ namespace MovTicket.Models.Entities
         public int t_id { get; set; }
         public string t_seat { get; set; }
 
+        //Enum
+        //public TicketCategory Category { get; set; }
+
 
         //Foreign Keys
         public int m_id { get; set; }
@@ -15,5 +19,6 @@ namespace MovTicket.Models.Entities
 
         public Movie Movie { get; set; }
         public Customer Customer { get; set; }
+
     }
 }
