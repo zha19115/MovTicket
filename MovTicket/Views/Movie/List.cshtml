@@ -30,9 +30,6 @@
                 <td>@movie.m_releaseDate</td>
                 <td>@movie.m_room</td>
                 <td>@movie.m_showTime</td>
-                <td>
-                    <a>Edit</a>
-                </td>
             </tr>
         }
     </tbody>
@@ -45,7 +42,7 @@
     <ul class="dropdown-menu">
         @foreach (var movie in Model)
         {
-            <li><a class="dropdown-item" asp-action="detail_@movie.m_id">@movie.m_id @movie.m_title</a></li>
+            <li><a class="dropdown-item" asp-action="@movie.m_id">@movie.m_id @movie.m_title</a></li>
 
         }
     </ul>

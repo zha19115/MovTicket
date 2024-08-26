@@ -37,6 +37,7 @@ namespace MovTicket.Controllers
 
 
             return RedirectToAction("List", "Customer");
+
         }
 
         [HttpGet]
