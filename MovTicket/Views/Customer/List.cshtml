@@ -26,12 +26,12 @@
             <tr>
                 <td>@customer.c_id</td>
                 <td>@customer.c_name</td>
-                <td>@customer.c_address</td>
+                <td>@customer.c_adress</td>
                 <td>@customer.c_email</td>
                 <td>@customer.c_phone</td>
                 <td>@customer.c_subscription</td>
                 <td>
-                    <a class="btn btn-primary" asp-controller="Customer" asp-action="Edit" asp-route="@customer.c_id">Edit</a>
+                    <a class="btn btn-primary" asp-controller="Customer" asp-action="Edit" asp-route-c_id="@customer.c_id">Edit</a>
                 </td>
             </tr>
         }
