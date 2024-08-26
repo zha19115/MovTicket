@@ -30,7 +30,7 @@ namespace MovTicket.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("c_id"));
 
-                    b.Property<string>("c_address")
+                    b.Property<string>("c_adress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

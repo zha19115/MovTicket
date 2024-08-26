@@ -26,7 +26,7 @@ namespace MovTicket.Controllers
             var customer = new Customer
             {
                 c_name = viewModel.c_name,
-                c_address = viewModel.c_address,
+                c_adress = viewModel.c_adress,
                 c_email = viewModel.c_email,
                 c_phone = viewModel.c_phone,
                 c_subscription = viewModel.c_subscription
@@ -36,7 +36,7 @@ namespace MovTicket.Controllers
             await dbContext.SaveChangesAsync();
 
 
-            return View();
+            return RedirectToAction("List", "Customer");
         }
 
         [HttpGet]
@@ -50,7 +50,10 @@ namespace MovTicket.Controllers
         public async Task<IActionResult> Edit(int c_id)
         {
             var customer = await dbContext.Customers.FindAsync(c_id);
-
+            if (customer == null)
+            {
+                return NotFound();
+            }
             return View(customer);
         }
 
@@ -58,20 +61,39 @@ namespace MovTicket.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Customer viewModel)
         {
+
             var customer = await dbContext.Customers.FindAsync(viewModel.c_id);
 
-            if (customer is not null) 
+            if (customer is not null)
             {
                 customer.c_name = viewModel.c_name;
-                customer.c_address = viewModel.c_address;
                 customer.c_email = viewModel.c_email;
                 customer.c_phone = viewModel.c_phone;
                 customer.c_subscription = viewModel.c_subscription;
 
                 await dbContext.SaveChangesAsync();
             }
+            return RedirectToAction("List", "Customer");
+        }
 
-            return RedirectToAction("List", "Costumer");
+        [HttpPost]
+        public async Task<IActionResult> Delete(Customer viewModel)
+        {
+            var customer = await dbContext.Customers.FindAsync(viewModel.c_id);
+
+            if (customer is null)
+            {
+
+                return NotFound();
+            }
+
+
+            if (customer is not null)
+            {
+                dbContext.Customers.Remove(customer);
+                await dbContext.SaveChangesAsync();
+            }
+            return RedirectToAction("List", "Customer");
         }
     }
 }

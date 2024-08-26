@@ -12,8 +12,8 @@ using MovTicket.Data;
 namespace MovTicket.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240822160900_Restore")]
-    partial class Restore
+    [Migration("20240826121822_working program")]
+    partial class workingprogram
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace MovTicket.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("c_id"));
 
-                    b.Property<string>("c_address")
+                    b.Property<string>("c_adress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
