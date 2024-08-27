@@ -14,10 +14,10 @@
     <tr>
         <th>ID</th>
         <th>Title</th>
-        <th>Genre</th>
+        @* <th>Genre</th>
         <th>Release Date</th>
         <th>Room</th>
-        <th>Show Time</th>
+        <th>Show Time</th> *@
     </tr>
     </thead>
     <tbody>
@@ -26,10 +26,10 @@
             <tr>
                 <td>@movie.m_id</td>
                 <td>@movie.m_title</td>
-                <td>@movie.m_genre</td>
+                @* <td>@movie.m_genre</td>
                 <td>@movie.m_releaseDate</td>
                 <td>@movie.m_room</td>
-                <td>@movie.m_showTime</td>
+                <td>@movie.m_showTime</td> *@
             </tr>
         }
     </tbody>
@@ -42,8 +42,7 @@
     <ul class="dropdown-menu">
         @foreach (var movie in Model)
         {
-            <li><a class="dropdown-item" asp-action="@movie.m_id">@movie.m_id @movie.m_title</a></li>
-
+            <li><a class="dropdown-item" asp-controller="Movie" asp-action="Detail" asp-route-m_id="@movie.m_id">@movie.m_id @movie.m_title</a></li>
         }
     </ul>
 </div>

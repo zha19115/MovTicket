@@ -47,7 +47,33 @@ namespace MovTicket.Controllers
             return View(customer);
         }
 
-        [HttpGet]
+        //[HttpGet]
+        //public async Task<IActionResult> List(string? name, string? email, bool? subscriptionStatus)
+        //{
+        //    // Start with the base query
+        //    var query = dbContext.Customers.AsQueryable();
+
+        //    // Apply filters if any are provided
+        //    if (!string.IsNullOrEmpty(name))
+        //    {
+        //        query = query.Where(c => c.c_name.Contains(name));
+        //    }
+
+        //    if (!string.IsNullOrEmpty(email))
+        //    {
+        //        query = query.Where(c => c.c_email.Contains(email));
+        //    }
+
+        //    if (subscriptionStatus.HasValue)
+        //    {
+        //        query = query.Where(c => c.c_subscription == subscriptionStatus.Value);
+        //    }
+
+        //    // Execute the query and return the results
+        //    var customers = await query.ToListAsync();
+        //    return View(customers);
+
+            [HttpGet]
         public async Task<IActionResult> Edit(int c_id)
         {
             var customer = await dbContext.Customers.FindAsync(c_id);
@@ -96,5 +122,6 @@ namespace MovTicket.Controllers
             }
             return RedirectToAction("List", "Customer");
         }
+
     }
 }
