@@ -9,33 +9,45 @@
 <h1>Movies</h1>
 
 
-<table class="table">
+@* Filtering *@
+
+<form asp-action="List">
+    <p>
+        Genre: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+@* List *@
+<table id="Movies" class="table table-sm">
     <thead>
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        @* <th>Genre</th>
-        <th>Release Date</th>
-        <th>Room</th>
-        <th>Show Time</th> *@
-    </tr>
+        <tr>
+            <th><a href="#">ID</a></th>
+            <th><a href="#">Title</a></th>
+            <th><a href="#">Genre</a></th>
+            @* <th>Release Date</th>
+            <th>Room</th>
+            <th>Show Time</th> *@
+        </tr>
     </thead>
     <tbody>
         @foreach (var movie in Model)
         {
             <tr>
-                <td>@movie.m_id</td>
-                <td>@movie.m_title</td>
-                @* <td>@movie.m_genre</td>
-                <td>@movie.m_releaseDate</td>
-                <td>@movie.m_room</td>
-                <td>@movie.m_showTime</td> *@
+                <td>@movie.m_id </td>
+                <td>@movie.m_title </td>
+                <td>@movie.m_genre</td>
+                <td><a asp-controller="Movie" asp-action="Detail" asp-route-m_id="@movie.m_id">Details</a></td>
+                @* <td>@movie.m_releaseDate</td>
+            <td>@movie.m_room</td>
+            <td>@movie.m_showTime</td> *@
+
             </tr>
         }
     </tbody>
 </table>
 
-<div class="dropdown">
+@* <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Movie details
     </button>
@@ -45,4 +57,4 @@
             <li><a class="dropdown-item" asp-controller="Movie" asp-action="Detail" asp-route-m_id="@movie.m_id">@movie.m_id @movie.m_title</a></li>
         }
     </ul>
-</div>
+</div> *@
