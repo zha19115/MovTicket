@@ -4,29 +4,43 @@
 @{
 }
 
-@*@model MovTicket.Models.Entities.Movie
+@model MovTicket.Models.Entities.Movie
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Genre</th>
-            <th>Release Date</th>
-            <th>Room</th>
-            <th>Show Time</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.Count > 0)
-        {
-            var movie = Model[0];
-            <tr>
-                <td>@movie.m_genre</td>
-                <td>@movie.m_releaseDate</td>
-                <td>@movie.m_room</td>
-                <td>@movie.m_showTime</td>
-            </tr>
-        }
-    </tbody>
-</table> *@
+@if (Model is null)
+{
+    <p>ID is NULL</p>    
+}
+else
+{
+    <form method="post" asp-action="Detail">
+        <div class="mt-3">
+            <h4 class="form-label">ID</h4>
+            <input type="text" class="form-control" asp-for="m_id" readonly />
+            <br>
+            <h4 class="form-label">Title</h4>
+            <input type="text" class="form-control" asp-for="m_title" readonly />
+            <br>
+
+            <h4 class="form-label">Genre: </h4>
+            <input type="text" class="form-control" asp-for="m_genre" readonly/>
+            <br>
+
+            <h4 class="form-label">Realease Date: </h4>
+            <input type="text" class="form-control" asp-for="m_releaseDate"readonly />
+            <br>
+
+            <h4 class="form-label">Room: </h4>
+            <input type="text" class="form-control" asp-for="m_room" readonly/>
+            <br>
+
+            <h4 class="form-label">Showtime: </h4>
+            <input type="text" class="form-control" asp-for="m_showTime" readonly/>
+            <br>
+
+
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Zurück</button>
+            </div>
+        
+    </form>
+}
