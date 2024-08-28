@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using MovTicket.Data;
 using MovTicket.Models;
 using MovTicket.Models.Entities;
+using PagedList;
 
 namespace MovTicket.Controllers
 {
@@ -48,20 +50,61 @@ namespace MovTicket.Controllers
 
 
 
-        public async Task<IActionResult> List(string searchString)
+
+        public async Task<IActionResult> List(string searchString, string sortOrder/*, string currentFilter, int? page*/)
         {
+            //Filtering
             if (_dbContext.Movies == null)
             {
-                return Problem("Entity set 'MovTicket.Movie'  is null.");
+                return Problem("Entity set 'MovTicket.Movie' is null.");
             }
 
+            
             var movies = from m in _dbContext.Movies
                          select m;
 
+            
             if (!String.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(s => s.m_genre!.ToUpper().Contains(searchString.ToUpper()));
             }
+
+            //Sorting
+            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.GenreSortParm = sortOrder == "genre_asc" ? "genre_desc" : "genre_asc";
+            switch (sortOrder)
+            {
+
+                case "title_desc":
+                    movies = movies.OrderByDescending(s => s.m_title);
+                    break;
+                case "genre_asc":
+                    movies = movies.OrderBy(s => s.m_genre);
+                    break;
+                case "genre_desc":
+                    movies = movies.OrderByDescending(s => s.m_genre);
+                    break;
+                default:
+                    movies = movies.OrderBy(s => s.m_id);
+                    break;
+            }
+
+            //Paging
+            //ViewBag.CurrentSort = sortOrder;
+            //if (searchString != null)
+            //{
+            //    page = 1;
+            //}
+            //else
+            //{
+            //    searchString = currentFilter;
+            //}
+
+            //ViewBag.CurrentFilter = searchString;
+
+            //int pageSize = 10;
+            //int pageNumber = (page ?? 1);
+            //return View(movies.ToPagedList(pageNumber, pageSize));
 
             return View(await movies.ToListAsync());
         }
