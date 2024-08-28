@@ -1,14 +1,26 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
-
+@* @model PagedList.IPagedList<MovTicket.Models.Entities.Movie>
+@using PagedList.Mvc; *@
 @model List<MovTicket.Models.Entities.Movie>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@* @{
+    ViewBag.Title = "Movies";
+} *@
+
+
 
 <h1>Movies</h1>
 
-
+@* @using (Html.BeginForm("List", "Movie", FormMethod.Get))
+{
+<p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+} *@
 @* Filtering *@
 
 <form asp-action="List">
@@ -22,9 +34,9 @@
 <table id="Movies" class="table table-sm">
     <thead>
         <tr>
-            <th><a href="#">ID</a></th>
-            <th><a href="#">Title</a></th>
-            <th><a href="#">Genre</a></th>
+            <th>ID</th>
+            <th>@Html.ActionLink("Title", "List", new { sortOrder = ViewBag.TitleSortParm, @*currentFilter = ViewBag.CurrentFilter*@ })</th>
+            <th>@Html.ActionLink("Genre", "List", new { sortOrder = ViewBag.GenreSortParm, @*currentFilter = ViewBag.CurrentFilter*@})</th>
             @* <th>Release Date</th>
             <th>Room</th>
             <th>Show Time</th> *@
@@ -47,6 +59,10 @@
     </tbody>
 </table>
 
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+ @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })) *@
 @* <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Movie details
