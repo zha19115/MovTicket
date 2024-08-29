@@ -88,6 +88,7 @@ namespace MovTicket.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Customer viewModel)
         {
+            
 
             var customer = await dbContext.Customers.FindAsync(viewModel.c_id);
 
