@@ -2,7 +2,7 @@
 
 namespace MovTicket.Models.Enum
 {
-    public enum EnumRoom
+    public enum EnumTicket
     {
         Standard,
         Premium,

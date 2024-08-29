@@ -10,7 +10,7 @@ namespace MovTicket.Models.Entities
         public string t_seat { get; set; }
 
         //Enum
-        //public TicketCategory Category { get; set; }
+        public EnumTicket Type { get; set; }
 
 
         //Foreign Keys
